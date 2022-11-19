@@ -27,6 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.util.Comparator;
 
 import jdbm.RecordManager;
@@ -75,7 +76,7 @@ public class KeyBTreeCursorTest
             tmpDir = new File( System.getProperty( TEST_OUTPUT_PATH ) );
         }
 
-        dbFile = File.createTempFile( KeyBTreeCursorTest.class.getName(), "db", tmpDir );
+        dbFile = Files.createTempFile( tmpDir.toPath(), KeyBTreeCursorTest.class.getName(), "db" ).toFile();
         recman = new BaseRecordManager( dbFile.getAbsolutePath() );
         comparator = new StringComparator();
         bt = new BTree<String, byte[]>( recman, comparator );

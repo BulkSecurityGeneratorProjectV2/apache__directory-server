@@ -25,6 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Comparator;
 
 import jdbm.RecordManager;
@@ -78,7 +79,7 @@ public class JdbmBrowserBugTest
             tmpDir = new File( System.getProperty( TEST_OUTPUT_PATH ) );
         }
 
-        dbFile = File.createTempFile( getClass().getSimpleName(), "db", tmpDir );
+        dbFile = Files.createTempFile( tmpDir.toPath(), getClass().getSimpleName(), "db" ).toFile();
         recman = new BaseRecordManager( dbFile.getAbsolutePath() );
         bt = new BTree<Integer, Integer>( recman, new IntegerComparator(), new IntegerSerializer(),
             new IntegerSerializer() );

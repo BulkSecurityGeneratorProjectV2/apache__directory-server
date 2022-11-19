@@ -27,6 +27,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 
 import org.apache.directory.api.util.FileUtils;
 import org.apache.directory.api.ldap.model.cursor.Cursor;
@@ -97,7 +98,7 @@ public class AvlRdnIndexTest
     public void setup() throws IOException
     {
 
-        File tmpIndexFile = File.createTempFile( AvlRdnIndexTest.class.getSimpleName(), "db" );
+        File tmpIndexFile = Files.createTempFile( AvlRdnIndexTest.class.getSimpleName(), "db" ).toFile();
         tmpIndexFile.deleteOnExit();
         dbFileDir = new File( tmpIndexFile.getParentFile(), AvlRdnIndexTest.class.getSimpleName() );
 

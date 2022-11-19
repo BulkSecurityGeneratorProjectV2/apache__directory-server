@@ -27,6 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
+import java.nio.file.Files;
 
 import org.apache.directory.api.util.FileUtils;
 import org.apache.directory.api.ldap.model.constants.SchemaConstants;
@@ -117,7 +118,7 @@ public class SubstringTest
     public void createStore() throws Exception
     {
         // setup the working directory for the store
-        wkdir = File.createTempFile( getClass().getSimpleName(), "db" );
+        wkdir = Files.createTempFile( getClass().getSimpleName(), "db" ).toFile();
         wkdir.delete();
         wkdir = new File( wkdir.getParentFile(), getClass().getSimpleName() );
         wkdir.mkdirs();

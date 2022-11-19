@@ -24,6 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
+import java.nio.file.Files;
 
 import org.apache.directory.api.ldap.model.constants.SchemaConstants;
 import org.apache.directory.api.ldap.model.csn.Csn;
@@ -132,7 +133,7 @@ public class JournalTest
             tmpDir = new File( System.getProperty( TEST_OUTPUT_PATH ) );
         }
 
-        dbFile = File.createTempFile( getClass().getSimpleName(), "db", tmpDir );
+        dbFile = Files.createTempFile( tmpDir.toPath(), getClass().getSimpleName(), "db" ).toFile();
         recman = new BaseRecordManager( dbFile.getAbsolutePath() );
         TransactionManager transactionManager = ( ( BaseRecordManager ) recman ).getTransactionManager();
         transactionManager.setMaximumTransactionsInLog( 200 );

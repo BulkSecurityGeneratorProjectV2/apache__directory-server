@@ -79,7 +79,7 @@ public class LdifBulkLoaderTest
     
     private File createLdif() throws Exception
     {
-        File file = File.createTempFile( "bulkload-test", ".ldif" );
+        File file = Files.createTempFile( "bulkload-test", ".ldif" ).toFile();
         file.deleteOnExit();
 
         try ( Writer writer = Files.newBufferedWriter( file.toPath(), StandardCharsets.UTF_8 ) )

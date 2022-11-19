@@ -28,6 +28,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.UnknownHostException;
+import java.nio.file.Files;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.KeyStore;
@@ -97,7 +98,7 @@ public class UberJarMainTest
         try
         {
             // Create a temporary keystore, be sure to remove it when exiting the test
-            File keyStoreFile = File.createTempFile( "testStore", "ks" );
+            File keyStoreFile = Files.createTempFile( "testStore", "ks" ).toFile();
             keyStoreFile.deleteOnExit();
 
             keyStore = KeyStore.getInstance( KeyStore.getDefaultType() );

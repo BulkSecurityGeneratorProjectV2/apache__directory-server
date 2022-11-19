@@ -26,6 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -127,7 +128,7 @@ public class NestedFilterTest extends AbstractCursorTest
         directoryService = new MockDirectoryService();
 
         // setup the working directory for the store
-        wkdir = File.createTempFile( getClass().getSimpleName(), "db" );
+        wkdir = Files.createTempFile( getClass().getSimpleName(), "db" ).toFile();
         wkdir.delete();
         wkdir = new File( wkdir.getParentFile(), getClass().getSimpleName() );
         wkdir.mkdirs();

@@ -28,6 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
+import java.nio.file.Files;
 
 import jdbm.RecordManager;
 import jdbm.helper.DefaultSerializer;
@@ -122,7 +123,7 @@ public class JdbmTableWithDuplicatesTest
             tmpDir = new File( System.getProperty( TEST_OUTPUT_PATH ) );
         }
 
-        dbFile = File.createTempFile( getClass().getSimpleName(), "db", tmpDir );
+        dbFile = Files.createTempFile( tmpDir.toPath(), getClass().getSimpleName(), "db" ).toFile();
         recman = new BaseRecordManager( dbFile.getAbsolutePath() );
 
         SerializableComparator<String> comparator = new SerializableComparator<String>(

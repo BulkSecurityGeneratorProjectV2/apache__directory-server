@@ -27,6 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
+import java.nio.file.Files;
 
 import jdbm.RecordManager;
 import jdbm.helper.DefaultSerializer;
@@ -112,7 +113,7 @@ public class DupsContainerCursorTest
             tmpDir.deleteOnExit();
         }
 
-        dbFile = File.createTempFile( getClass().getSimpleName(), "db", tmpDir );
+        dbFile = Files.createTempFile( tmpDir.toPath(), getClass().getSimpleName(), "db" ).toFile();
         dbFile.deleteOnExit();
         recman = new BaseRecordManager( dbFile.getAbsolutePath() );
 
